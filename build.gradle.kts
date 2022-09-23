@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.apache.commons.lang.CharEncoding
+
 plugins {
     java
     `maven-publish`
@@ -14,9 +16,10 @@ repositories {
 }
 
 dependencies {
-    api("org.slf4j", "slf4j-api", "1.7.36")
+    api("org.slf4j", "slf4j-api", "2.0.2")
     api("org.jetbrains", "annotations", "23.0.0")
     api("com.google.code.findbugs", "jsr305", "3.0.2")
+    api("com.fasterxml.jackson.core", "jackson-databind", "2.13.4")
 
     // unit testing
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
@@ -58,7 +61,7 @@ java {
     withJavadocJar()
 
     toolchain{
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(18))
     }
 }
 
@@ -71,12 +74,12 @@ tasks {
     }
 
     compileJava {
-        options.encoding = org.gradle.internal.impldep.org.apache.commons.lang.CharEncoding.UTF_8
+        options.encoding = CharEncoding.UTF_8
     }
 
     javadoc {
         val options = options as StandardJavadocDocletOptions
-        options.encoding = org.gradle.internal.impldep.org.apache.commons.lang.CharEncoding.UTF_8
+        options.encoding = CharEncoding.UTF_8
         options.links(
             "https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/",
             "https://javadoc.io/doc/org.jetbrains/annotations/latest/",

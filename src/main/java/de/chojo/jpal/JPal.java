@@ -1,5 +1,6 @@
 package de.chojo.jpal;
 
-public final class JPal {
+public abstract class JPal {
+    String base;
     // Nothing to see here
 }
